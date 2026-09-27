@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Gaze Bot — Webcam Eye Tracking Avatar</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <main class="stage">
+    <header class="stage__header">
+      <h1>Gaze Bot</h1>
+      <p class="subtitle">Look left, look right, blink — the bot follows your eyes in real time.</p>
+    </header>
+
+    <div class="stage__avatar">
+      <canvas id="avatarCanvas" width="480" height="480" aria-label="Animated bot avatar that mirrors your gaze and blinks"></canvas>
+    </div>
+
+    <div class="stage__controls">
+      <button id="startBtn" class="btn">Start camera</button>
+      <span id="statusText" class="status" role="status">Camera is off</span>
+    </div>
+
+    <!-- Hidden source video the model reads from. Not displayed to the user. -->
+    <video id="inputVideo" playsinline autoplay muted></video>
+
+    <!-- Small optional self-view so the user can see what the camera sees. Toggled by a checkbox. -->
+    <div class="stage__preview">
+      <label class="preview-toggle">
+        <input type="checkbox" id="previewToggle" />
+        Show camera preview
+      </label>
+      <video id="previewVideo" class="preview-video" playsinline autoplay muted hidden></video>
+    </div>
+
+    <p class="hint" id="hintText"></p>
+  </main>
+
+  <!-- js/main.js is a native ES module, so it can use `import` for the MediaPipe library. -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+:root {
+  --bg: #0e1013;
+  --panel: #16191d;
+  --ink: #eef0f2;
+  --muted: #8a9098;
+  --accent: #4fd1c5;
+  --accent-ink: #06201c;
+  --ring: rgba(79, 209, 197, 0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at 50% 0%, #171b20 0%, var(--bg) 60%);
+  color: var(--ink);
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  padding: 32px 16px;
+}
+
+.stage {
+  width: 100%;
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.stage__header h1 {
+  margin: 0 0 6px;
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.stage__avatar {
+  width: min(80vw, 320px);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#avatarCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.45));
+}
+
+.stage__controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  appearance: none;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 26px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent-ink);
+  background: var(--accent);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  box-shadow: 0 0 0 0 var(--ring);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px var(--ring);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+.status {
+  font-size: 0.85rem;
+  color: var(--muted);
+  min-width: 140px;
+  text-align: left;
+}
+
+.status[data-state="ready"] {
+  color: var(--accent);
+}
+
+.status[data-state="error"] {
+  color: #ff8a8a;
+}
+
+#inputVideo {
+  /* The model needs this element in the DOM, but nobody needs to see it. */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.stage__preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.preview-toggle {
+  font-size: 0.82rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.preview-video {
+  width: 180px;
+  border-radius: 12px;
+  border: 1px solid #262b31;
+  transform: scaleX(-1); /* mirror, so it feels like a mirror rather than a screen recording */
+  background: #000;
+}
+
+.hint {
+  margin: 0;
+  max-width: 440px;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--muted);
+  min-height: 1.2em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
